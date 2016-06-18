@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Pg431ExcuseManager
 {
@@ -12,7 +13,6 @@ namespace Pg431ExcuseManager
         public string Results { get; set; }
         public DateTime LastUsed { get; set; }
         public string ExcusePath { get; set; }
-
 
         // overloaded triple constructors
         // one for when the form is loaded
@@ -28,22 +28,31 @@ namespace Pg431ExcuseManager
         }
 
         // and one for a random excuse
-        public Excuse(int rand)
+        public Excuse(string folderPath, Random rand)
         {
-
+            string[] fileNames = Directory.GetFiles(folderPath, "*.txt");
+            ExcusePath = fileNames[rand.Next(fileNames.Length)];
+            OpenFile(ExcusePath);
         }
-
-
-        // run the save and open logic based on calls from the form, somehow?
+        
         public void OpenFile(string fileToOpen)
         {
-
+            using (StreamReader sr = new StreamReader(fileToOpen))
+            {
+                Description = sr.ReadLine();
+                Results = sr.ReadLine();
+                LastUsed = Convert.ToDateTime(sr.ReadLine());
+            }
         }
 
         public void Save(string fileToSave)
         {
-            
+            using (StreamWriter sw = new StreamWriter(fileToSave))
+            {
+                sw.WriteLine(Description);
+                sw.WriteLine(Results);
+                sw.WriteLine(LastUsed.ToString());
+            }
         }
     }
-
 }

@@ -24,7 +24,6 @@ namespace Pg431ExcuseManager
         string selectedPath = "";
         Random rand = new Random();
 
-        // trying new-fangled expression-bodied syntax for one line methods
         private void description_TextChanged(object sender, EventArgs e)
         {
             currentExcuse.Description = description.Text;
@@ -44,6 +43,7 @@ namespace Pg431ExcuseManager
         }
 
         // why does the provided code have 'this' ... does it not belong in the form?
+        // and wtf is up with the boolean
         private void UpdateForm(bool changed)
         {
             if (!changed)
@@ -60,7 +60,6 @@ namespace Pg431ExcuseManager
                 {
                     this.Text = "Execuse Manager*";
                 }
-                
                 // wtf is this?
                 this.formChanged = changed;
             }
@@ -81,20 +80,41 @@ namespace Pg431ExcuseManager
         private void open_Click(object sender, EventArgs e)
         {
             openFileDialog1.InitialDirectory = selectedPath;
-            Excuse excuse = new Excuse(selectedPath);
-
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) 
+            {
+                currentExcuse = new Excuse(openFileDialog1.FileName);
+                currentExcuse.OpenFile(currentExcuse.ExcusePath);
+                UpdateForm(false);
+            }
         }
 
         private void save_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.InitialDirectory = selectedPath;
-            // stuff
-            MessageBox.Show("Excuse file written");
+            if (!string.IsNullOrEmpty(currentExcuse.Description) && !string.IsNullOrEmpty(currentExcuse.Results))
+            {
+                saveFileDialog1.InitialDirectory = selectedPath;
+                saveFileDialog1.FileName = $"{currentExcuse.Description}.txt";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    currentExcuse.ExcusePath = saveFileDialog1.FileName;
+                }
+                currentExcuse.Save(currentExcuse.ExcusePath);
+                MessageBox.Show("Excuse file written");
+            }
+            else
+            {
+                MessageBox.Show("You have to enter a description and result before saving", "Form incomplete");
+            }
         }
-
         private void random_Click(object sender, EventArgs e)
         {
-            Excuse excuse = new Excuse(rand.Next());
+            currentExcuse = new Excuse(selectedPath, rand);
+            UpdateForm(false);
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
