@@ -42,8 +42,6 @@ namespace Pg431ExcuseManager
             UpdateForm(true);
         }
 
-        // why does the provided code have 'this' ... does it not belong in the form?
-        // and wtf is up with the boolean
         private void UpdateForm(bool changed)
         {
             if (!changed)
@@ -52,14 +50,17 @@ namespace Pg431ExcuseManager
                 this.results.Text = currentExcuse.Results;
                 this.lastUsed.Value = currentExcuse.LastUsed;
                 if (!string.IsNullOrEmpty(currentExcuse.ExcusePath))
+                {
                     fileDate.Text = File.GetLastWriteTime(currentExcuse.ExcusePath).ToString();
-                    this.Text = "Execuse Manager";
+
                 }
-                else
-                    this.Text = "Execuse Manager*";
-                // wtf is this?
-                this.formChanged = changed;
+                this.Text = "Execuse Manager";
             }
+            else
+            {
+                this.Text = "Execuse Manager*";
+            }
+            this.formChanged = changed;
         }
 
         private void folder_Click(object sender, EventArgs e)
@@ -79,12 +80,15 @@ namespace Pg431ExcuseManager
         // call the Excuse object methods to open and save, somehow?
         private void open_Click(object sender, EventArgs e)
         {
-            openFileDialog1.InitialDirectory = selectedPath;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) 
+            if (promptUnsaved())
             {
-                currentExcuse = new Excuse(openFileDialog1.FileName);
-                currentExcuse.OpenFile(currentExcuse.ExcusePath);
-                UpdateForm(formChanged);
+                openFileDialog1.InitialDirectory = selectedPath;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    currentExcuse = new Excuse(openFileDialog1.FileName);
+                    currentExcuse.OpenFile(currentExcuse.ExcusePath);
+                    UpdateForm(false);
+                }
             }
         }
 
@@ -99,7 +103,7 @@ namespace Pg431ExcuseManager
                     currentExcuse.ExcusePath = saveFileDialog1.FileName;
                 }
                 currentExcuse.Save(currentExcuse.ExcusePath);
-                formChanged = false;
+                UpdateForm(false);
                 MessageBox.Show("Excuse file written");
             }
             else
@@ -109,8 +113,24 @@ namespace Pg431ExcuseManager
         }
         private void random_Click(object sender, EventArgs e)
         {
-            currentExcuse = new Excuse(selectedPath, rand);
-            UpdateForm(formChanged);
+            if (promptUnsaved())
+            {
+                currentExcuse = new Excuse(selectedPath, rand);
+                UpdateForm(false);
+            }
+        }
+
+        private bool promptUnsaved()
+        {
+            if (formChanged == false)
+            {
+                return true;
+            }
+            if (MessageBox.Show("The current excuse has not been saved, discard changes?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
         }
     }
-}
+} 
