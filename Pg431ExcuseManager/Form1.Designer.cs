@@ -87,8 +87,9 @@
             // 
             // description
             // 
+            this.description.Enabled = false;
             this.description.Location = new System.Drawing.Point(108, 20);
-            this.description.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.description.Margin = new System.Windows.Forms.Padding(4);
             this.description.Name = "description";
             this.description.Size = new System.Drawing.Size(417, 22);
             this.description.TabIndex = 4;
@@ -96,8 +97,9 @@
             // 
             // results
             // 
+            this.results.Enabled = false;
             this.results.Location = new System.Drawing.Point(108, 50);
-            this.results.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.results.Margin = new System.Windows.Forms.Padding(4);
             this.results.Name = "results";
             this.results.Size = new System.Drawing.Size(417, 22);
             this.results.TabIndex = 5;
@@ -106,7 +108,7 @@
             // lastUsed
             // 
             this.lastUsed.Location = new System.Drawing.Point(108, 82);
-            this.lastUsed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lastUsed.Margin = new System.Windows.Forms.Padding(4);
             this.lastUsed.Name = "lastUsed";
             this.lastUsed.Size = new System.Drawing.Size(265, 22);
             this.lastUsed.TabIndex = 6;
@@ -116,7 +118,7 @@
             // 
             this.folder.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.folder.Location = new System.Drawing.Point(35, 165);
-            this.folder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.folder.Margin = new System.Windows.Forms.Padding(4);
             this.folder.Name = "folder";
             this.folder.Size = new System.Drawing.Size(100, 28);
             this.folder.TabIndex = 8;
@@ -128,7 +130,7 @@
             // 
             this.save.Enabled = false;
             this.save.Location = new System.Drawing.Point(165, 165);
-            this.save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.save.Margin = new System.Windows.Forms.Padding(4);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(100, 28);
             this.save.TabIndex = 9;
@@ -140,7 +142,7 @@
             // 
             this.open.Enabled = false;
             this.open.Location = new System.Drawing.Point(296, 165);
-            this.open.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.open.Margin = new System.Windows.Forms.Padding(4);
             this.open.Name = "open";
             this.open.Size = new System.Drawing.Size(100, 28);
             this.open.TabIndex = 10;
@@ -152,7 +154,7 @@
             // 
             this.random.Enabled = false;
             this.random.Location = new System.Drawing.Point(427, 165);
-            this.random.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.random.Margin = new System.Windows.Forms.Padding(4);
             this.random.Name = "random";
             this.random.Size = new System.Drawing.Size(100, 28);
             this.random.TabIndex = 11;
@@ -171,7 +173,11 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            this.openFileDialog1.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
             // 
             // Form1
             // 
@@ -191,7 +197,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Execuse Manager";
             this.ResumeLayout(false);

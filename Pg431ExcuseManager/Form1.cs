@@ -52,14 +52,11 @@ namespace Pg431ExcuseManager
                 this.results.Text = currentExcuse.Results;
                 this.lastUsed.Value = currentExcuse.LastUsed;
                 if (!string.IsNullOrEmpty(currentExcuse.ExcusePath))
-                {
                     fileDate.Text = File.GetLastWriteTime(currentExcuse.ExcusePath).ToString();
                     this.Text = "Execuse Manager";
                 }
                 else
-                {
                     this.Text = "Execuse Manager*";
-                }
                 // wtf is this?
                 this.formChanged = changed;
             }
@@ -73,6 +70,9 @@ namespace Pg431ExcuseManager
                 open.Enabled = true;
                 save.Enabled = true;
                 random.Enabled = true;
+                description.Enabled = true;
+                results.Enabled = true;
+                lastUsed.Enabled = true;
             }
         }
 
@@ -84,7 +84,7 @@ namespace Pg431ExcuseManager
             {
                 currentExcuse = new Excuse(openFileDialog1.FileName);
                 currentExcuse.OpenFile(currentExcuse.ExcusePath);
-                UpdateForm(false);
+                UpdateForm(formChanged);
             }
         }
 
@@ -99,22 +99,18 @@ namespace Pg431ExcuseManager
                     currentExcuse.ExcusePath = saveFileDialog1.FileName;
                 }
                 currentExcuse.Save(currentExcuse.ExcusePath);
+                formChanged = false;
                 MessageBox.Show("Excuse file written");
             }
             else
             {
-                MessageBox.Show("You have to enter a description and result before saving", "Form incomplete");
+                MessageBox.Show("You have to enter an excuse description and result before saving", "Form incomplete");
             }
         }
         private void random_Click(object sender, EventArgs e)
         {
             currentExcuse = new Excuse(selectedPath, rand);
-            UpdateForm(false);
-        }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
+            UpdateForm(formChanged);
         }
     }
 }
