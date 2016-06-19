@@ -44,7 +44,7 @@ namespace Pg431ExcuseManager
 
         private void UpdateForm(bool changed)
         {
-            if (!changed)
+            if (!changed && !string.IsNullOrEmpty(currentExcuse.Description))
             {
                 this.description.Text = currentExcuse.Description;
                 this.results.Text = currentExcuse.Results;
@@ -97,14 +97,14 @@ namespace Pg431ExcuseManager
             if (!string.IsNullOrEmpty(currentExcuse.Description) && !string.IsNullOrEmpty(currentExcuse.Results))
             {
                 saveFileDialog1.InitialDirectory = selectedPath;
-                saveFileDialog1.FileName = $"{currentExcuse.Description}.txt";
+                saveFileDialog1.FileName = $"{currentExcuse.Description}.excuse";
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     currentExcuse.ExcusePath = saveFileDialog1.FileName;
+                    currentExcuse.Save(currentExcuse.ExcusePath);
+                    UpdateForm(false);
+                    MessageBox.Show("Excuse file written");
                 }
-                currentExcuse.Save(currentExcuse.ExcusePath);
-                UpdateForm(false);
-                MessageBox.Show("Excuse file written");
             }
             else
             {

@@ -48,72 +48,80 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Location = new System.Drawing.Point(16, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Excuse";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 44);
+            this.label2.Location = new System.Drawing.Point(16, 54);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Result";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 73);
+            this.label3.Location = new System.Drawing.Point(16, 90);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(72, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "Last Used";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 101);
+            this.label4.Location = new System.Drawing.Point(16, 124);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "File Date";
             // 
             // description
             // 
             this.description.Enabled = false;
-            this.description.Location = new System.Drawing.Point(81, 16);
+            this.description.Location = new System.Drawing.Point(108, 20);
+            this.description.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(314, 20);
+            this.description.Size = new System.Drawing.Size(417, 22);
             this.description.TabIndex = 4;
             this.description.TextChanged += new System.EventHandler(this.description_TextChanged);
             // 
             // results
             // 
             this.results.Enabled = false;
-            this.results.Location = new System.Drawing.Point(81, 41);
+            this.results.Location = new System.Drawing.Point(108, 50);
+            this.results.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.results.Name = "results";
-            this.results.Size = new System.Drawing.Size(314, 20);
+            this.results.Size = new System.Drawing.Size(417, 22);
             this.results.TabIndex = 5;
             this.results.TextChanged += new System.EventHandler(this.results_TextChanged);
             // 
             // lastUsed
             // 
             this.lastUsed.Enabled = false;
-            this.lastUsed.Location = new System.Drawing.Point(81, 67);
+            this.lastUsed.Location = new System.Drawing.Point(108, 82);
+            this.lastUsed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lastUsed.Name = "lastUsed";
-            this.lastUsed.Size = new System.Drawing.Size(200, 20);
+            this.lastUsed.Size = new System.Drawing.Size(265, 22);
             this.lastUsed.TabIndex = 6;
             this.lastUsed.ValueChanged += new System.EventHandler(this.lastUsed_ValueChanged);
             // 
             // folder
             // 
             this.folder.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.folder.Location = new System.Drawing.Point(26, 134);
+            this.folder.Location = new System.Drawing.Point(35, 165);
+            this.folder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.folder.Name = "folder";
-            this.folder.Size = new System.Drawing.Size(75, 23);
+            this.folder.Size = new System.Drawing.Size(100, 28);
             this.folder.TabIndex = 8;
             this.folder.Text = "Set Folder";
             this.folder.UseVisualStyleBackColor = false;
@@ -122,9 +130,10 @@
             // save
             // 
             this.save.Enabled = false;
-            this.save.Location = new System.Drawing.Point(124, 134);
+            this.save.Location = new System.Drawing.Point(165, 165);
+            this.save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.Size = new System.Drawing.Size(100, 28);
             this.save.TabIndex = 9;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
@@ -133,9 +142,10 @@
             // open
             // 
             this.open.Enabled = false;
-            this.open.Location = new System.Drawing.Point(222, 134);
+            this.open.Location = new System.Drawing.Point(296, 165);
+            this.open.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(75, 23);
+            this.open.Size = new System.Drawing.Size(100, 28);
             this.open.TabIndex = 10;
             this.open.Text = "Open";
             this.open.UseVisualStyleBackColor = true;
@@ -144,9 +154,10 @@
             // random
             // 
             this.random.Enabled = false;
-            this.random.Location = new System.Drawing.Point(320, 134);
+            this.random.Location = new System.Drawing.Point(427, 165);
+            this.random.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.random.Name = "random";
-            this.random.Size = new System.Drawing.Size(75, 23);
+            this.random.Size = new System.Drawing.Size(100, 28);
             this.random.TabIndex = 11;
             this.random.Text = "Random";
             this.random.UseVisualStyleBackColor = true;
@@ -155,24 +166,25 @@
             // fileDate
             // 
             this.fileDate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.fileDate.Location = new System.Drawing.Point(78, 100);
+            this.fileDate.Location = new System.Drawing.Point(104, 123);
+            this.fileDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.fileDate.Name = "fileDate";
-            this.fileDate.Size = new System.Drawing.Size(317, 23);
+            this.fileDate.Size = new System.Drawing.Size(423, 28);
             this.fileDate.TabIndex = 12;
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            this.openFileDialog1.Filter = "Excuse Files (*.excuse)|*.excuse";
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            this.saveFileDialog1.Filter = "Excuse Files (*.excuse)|*.excuse";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 169);
+            this.ClientSize = new System.Drawing.Size(560, 208);
             this.Controls.Add(this.fileDate);
             this.Controls.Add(this.random);
             this.Controls.Add(this.open);
@@ -186,6 +198,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Execuse Manager";
             this.ResumeLayout(false);

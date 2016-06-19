@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Pg431ExcuseManager
 {
+    [Serializable]
     class Excuse
     {
         public string Description { get; set; }
         public string Results { get; set; }
         public DateTime LastUsed { get; set; }
         public string ExcusePath { get; set; }
+
 
         // overloaded triple constructors
         // one for when the form is loaded
@@ -30,28 +33,36 @@ namespace Pg431ExcuseManager
         // and one for a random excuse
         public Excuse(string folderPath, Random rand)
         {
-            string[] fileNames = Directory.GetFiles(folderPath, "*.txt");
-            ExcusePath = fileNames[rand.Next(fileNames.Length)];
-            OpenFile(ExcusePath);
+            string[] fileNames = Directory.GetFiles(folderPath, "*.excuse");
+            if (fileNames.Length > 0)
+            {
+                ExcusePath = fileNames[rand.Next(fileNames.Length)];
+                OpenFile(ExcusePath);
+            }
         }
         
         public void OpenFile(string fileToOpen)
         {
-            using (StreamReader sr = new StreamReader(fileToOpen))
+            using (Stream input = File.OpenRead(fileToOpen))
             {
-                Description = sr.ReadLine();
-                Results = sr.ReadLine();
-                LastUsed = Convert.ToDateTime(sr.ReadLine());
+                if (input.Length > 0)
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    Excuse readExcuse = (Excuse)formatter.Deserialize(input);
+                    Description = readExcuse.Description;
+                    Results = readExcuse.Results;
+                    LastUsed = readExcuse.LastUsed;
+                    ExcusePath = readExcuse.ExcusePath;
+                }
             }
         }
 
         public void Save(string fileToSave)
         {
-            using (StreamWriter sw = new StreamWriter(fileToSave))
+            using (Stream output = File.Create(fileToSave))
             {
-                sw.WriteLine(Description);
-                sw.WriteLine(Results);
-                sw.WriteLine(LastUsed.ToString());
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(output, this);
             }
         }
     }
